@@ -1,0 +1,66 @@
+<!-- Fixed navbar -->
+<header>
+    <nav class="navbar navbar-expand-md fixed-top navbar-light" style="background-color: #e3f2fd;">
+		<a class="navbar-brand"><img src="./assets/html_50by50.png"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarCollapse" aria-controls="navbarCollapse"
+		(click)="isCollapsed = !isCollapsed"
+		[attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse" [ngbCollapse]="isCollapsed">
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" routerLink="intro">Introduction</a>
+			</li>
+			<li class="nav-item dropdown" ngbDropdown>
+				<a ngbDropdownToggle class="nav-link dropdown-toggle"
+				id="content-model-dropdown" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">Categories</a>
+				<div class="dropdown-menu" ngbDropdownMenu aria-labelledby="content-model-dropdown">
+					<a class="dropdown-item" href="#">Element</a>
+					<a class="dropdown-item" href="#">Metadata</a>
+				</div>
+			</li>
+			</ul>
+			<form class="form-inline mt-2 mt-md-0">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+    </nav>
+</header>
+<main>
+	<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+		<div class='form-group'>
+			<div class="row">
+				<div class="col-md-4"><label for="firstName"> First Name</label></div>
+				<div class="col-md-8"><input id="firstName" ngModel name="firstName" type="text" class="form-control" /></div>
+			</div>
+		</div>
+		<div class='form-group'>
+			<div class="row">
+				<div class="col-md-4"><label for="lastName"> Last Name</label></div>
+				<div class="col-md-8"><input id="lastName" ngModel type="text" name="lastName" class="form-control" /></div>
+			</div>
+		</div>
+		<button class="btn btn-primary">Submit</button>
+	</form>
+	<section *ngIf="returnedData">
+		<div class="alert alert-success" role="alert">
+			<h4 class="alert-heading">Well done!</h4>
+			<p>First Name: {{ returnedData.firstName }}</p>
+			<p>Last Name: {{ returnedData.lastName }}</p>
+			<hr>
+			<p class="mb-0">Enter a new name and submit that</p>
+		</div>
+	</section>
+</main>
+
+<footer class="footer">
+	<div class="container">
+		<span class="text-muted">A sample Node JS application</span>
+	</div>
+</footer>
+
+
